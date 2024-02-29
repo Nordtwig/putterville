@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc70ah1vxd7ln"]
+[gd_scene load_steps=7 format=3 uid="uid://bc70ah1vxd7ln"]
 
+[ext_resource type="Script" path="res://hole/hole.gd" id="1_gw1st"]
 [ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="1_yc1nr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
@@ -20,6 +21,7 @@ rough = true
 bounce = 0.5
 
 [node name="Hole" type="Node3D"]
+script = ExtResource("1_gw1st")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r3djb")
