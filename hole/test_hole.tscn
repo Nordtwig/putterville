@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk2ctkboqnpve"]
+
+[ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="1_m34ay"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_304nc"]
+sky_material = SubResource("ProceduralSkyMaterial_6o0ss")
+
+[sub_resource type="Environment" id="Environment_r3djb"]
+background_mode = 2
+sky = SubResource("Sky_304nc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tgqet"]
+rough = true
+bounce = 0.5
+
+[node name="Hole" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r3djb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_m34ay")
+physics_material = SubResource("PhysicsMaterial_tgqet")
+cell_size = Vector3(1, 0.001, 1)
+data = {
+"cells": PackedInt32Array(65534, 3, 22, 65534, 2, 24, 65534, 1, 30, 65534, 0, 24, 65534, 65535, 24, 65534, 65534, 24, 65534, 65533, 30, 65534, 65532, 15, 65532, 65532, 1441801, 65534, 65530, 655369, 1, 65532, 1048577, 65535, 65532, 1048600, 0, 65532, 1048600, 65534, 65531, 24, 65533, 65532, 1441816)
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.775519, -0.482899, 0.406669, 0, 0.644152, 0.764898, -0.631325, -0.593193, 0.499552, 2.46871, 5.54151, 1.88885)
