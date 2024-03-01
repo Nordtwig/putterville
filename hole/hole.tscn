@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc70ah1vxd7ln"]
+[gd_scene load_steps=10 format=3 uid="uid://bc70ah1vxd7ln"]
 
 [ext_resource type="Script" path="res://hole/hole.gd" id="1_gw1st"]
 [ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="1_yc1nr"]
 [ext_resource type="PackedScene" uid="uid://bgjx1eoax5jym" path="res://ball/ball.tscn" id="3_8r3te"]
+[ext_resource type="PackedScene" uid="uid://1ab0v008gx5h" path="res://arrow/arrow.tscn" id="4_g1v61"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -59,3 +60,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 0.157288, 3.73465)
 
 [node name="Ball" parent="Tee" instance=ExtResource("3_8r3te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Arrow" parent="Tee/Ball" instance=ExtResource("4_g1v61")]
