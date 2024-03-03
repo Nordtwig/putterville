@@ -4,6 +4,7 @@ enum {AIM, SET_POWER, SHOOT, WIN}
 
 @export var power_speed: float = 100
 @export var angle_speed: float = 1.1
+@export var mouse_sensitivity: float = 150
 
 var angle_change: int = 1
 var power: float = 0
@@ -15,6 +16,7 @@ var state = AIM
 
 
 func _ready() -> void:
+    Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
     hole.body_entered.connect(on_hole_body_entered)
     $Arrow.hide()
     $Ball.position = $Tee.position
@@ -24,9 +26,11 @@ func _ready() -> void:
 
 
 func _process(delta) -> void:
+    if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+        return
     match state: 
-        AIM:
-            animate_arrow(delta)
+        # AIM:
+        #     animate_arrow(delta)
         SET_POWER:
             animate_power(delta)
         SHOOT:
@@ -34,7 +38,15 @@ func _process(delta) -> void:
    
 
 func _input(event):
+    if event.is_action_pressed("ui_cancel") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    if event is InputEventMouseMotion:
+        if state == AIM:
+            $Arrow.rotation.y -= event.relative.x / mouse_sensitivity
     if event.is_action_pressed("click"):
+        if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+            Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+            return
         match state:
             AIM:
                 change_state(SET_POWER)
