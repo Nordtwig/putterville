@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc70ah1vxd7ln"]
+[gd_scene load_steps=12 format=3 uid="uid://bc70ah1vxd7ln"]
 
 [ext_resource type="Script" path="res://hole/hole.gd" id="1_gw1st"]
 [ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="1_yc1nr"]
 [ext_resource type="PackedScene" uid="uid://bgjx1eoax5jym" path="res://ball/ball.tscn" id="3_8r3te"]
 [ext_resource type="PackedScene" uid="uid://1ab0v008gx5h" path="res://arrow/arrow.tscn" id="4_g1v61"]
 [ext_resource type="PackedScene" uid="uid://bp44uvbmbvdjg" path="res://ui/ui.tscn" id="5_ga7a5"]
+[ext_resource type="Script" path="res://hole/CameraGimbal.gd" id="6_vmg4n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -46,9 +47,6 @@ data = {
 "cells": PackedInt32Array(65534, 3, 22, 65534, 2, 24, 65534, 1, 30, 65534, 0, 24, 65534, 65535, 24, 65534, 65534, 24, 65534, 65533, 30, 65534, 65532, 15, 65532, 65532, 1441801, 65534, 65530, 655369, 1, 65532, 1048577, 65535, 65532, 1048600, 0, 65532, 1048600, 65534, 65531, 24, 65533, 65532, 1441816)
 }
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.775519, -0.482899, 0.406669, 0, 0.644152, 0.764898, -0.631325, -0.593193, 0.499552, 2.46871, 5.54151, 1.88885)
-
 [node name="Hole" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49968, 0, -3.4995)
 
@@ -66,3 +64,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 1.05729, 3.73465)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 0.157288, 3.73465)
 
 [node name="UI" parent="." instance=ExtResource("5_ga7a5")]
+
+[node name="GimbalOuter" type="Node3D" parent="."]
+script = ExtResource("6_vmg4n")
+
+[node name="GimbalInner" type="Node3D" parent="GimbalOuter"]
+
+[node name="Camera3D" type="Camera3D" parent="GimbalOuter/GimbalInner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
