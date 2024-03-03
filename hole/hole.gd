@@ -18,6 +18,7 @@ func _ready() -> void:
     hole.body_entered.connect(on_hole_body_entered)
     $Arrow.hide()
     $Ball.position = $Tee.position
+    $Ball.stopped.connect(on_ball_stopped)
     change_state(AIM)
     $UI.show_message("Get Ready!")
 
@@ -65,7 +66,7 @@ func animate_arrow(delta: float) -> void:
     if $Arrow.rotation.y > PI / 2:
         angle_change = -1
     if $Arrow.rotation.y < -PI / 2:
-        angle_change = KEY_1
+        angle_change = 1
 
 
 func animate_power(delta: float) -> void:
@@ -81,3 +82,8 @@ func on_hole_body_entered(body: RigidBody3D) -> void:
     if body.name == "Ball":
         print("Win!")
         change_state(WIN)
+
+
+func on_ball_stopped() -> void:
+    if state == SHOOT:
+        change_state(AIM)
