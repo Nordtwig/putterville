@@ -2,6 +2,7 @@ extends Node3D
 
 enum {AIM, SET_POWER, SHOOT, WIN}
 
+@export var next_hole: PackedScene
 @export var power_speed: float = 100
 @export var angle_speed: float = 1.1
 @export var mouse_sensitivity: float = 150
@@ -72,7 +73,9 @@ func change_state(new_state) -> void:
         WIN:
             $Ball.hide()
             $Arrow.hide()
-            $UI.show_message("Win!")
+            await get_tree().create_timer(1).timeout
+            if next_hole:
+                get_tree().change_scene_to_packed(next_hole)
 
 
 func animate_arrow(delta: float) -> void:

@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bc70ah1vxd7ln"]
+[gd_scene load_steps=12 format=3 uid="uid://b7etkas5ac67a"]
 
-[ext_resource type="Script" path="res://hole/hole.gd" id="1_gw1st"]
-[ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="1_yc1nr"]
-[ext_resource type="PackedScene" uid="uid://b7etkas5ac67a" path="res://hole/hole_2.tscn" id="2_xclkm"]
-[ext_resource type="PackedScene" uid="uid://bgjx1eoax5jym" path="res://ball/ball.tscn" id="3_8r3te"]
-[ext_resource type="PackedScene" uid="uid://1ab0v008gx5h" path="res://arrow/arrow.tscn" id="4_g1v61"]
-[ext_resource type="PackedScene" uid="uid://bp44uvbmbvdjg" path="res://ui/ui.tscn" id="5_ga7a5"]
-[ext_resource type="PackedScene" uid="uid://ux4th72y10c6" path="res://camera/gimbal_outer.tscn" id="6_yyqi2"]
+[ext_resource type="Script" path="res://hole/hole.gd" id="1_o3xkm"]
+[ext_resource type="MeshLibrary" uid="uid://cx4cab55h5sj0" path="res://golf_tiles.tres" id="2_4741r"]
+[ext_resource type="PackedScene" uid="uid://1ab0v008gx5h" path="res://arrow/arrow.tscn" id="3_yp5q4"]
+[ext_resource type="PackedScene" uid="uid://bgjx1eoax5jym" path="res://ball/ball.tscn" id="4_2m2td"]
+[ext_resource type="PackedScene" uid="uid://bp44uvbmbvdjg" path="res://ui/ui.tscn" id="5_ors74"]
+[ext_resource type="PackedScene" uid="uid://ux4th72y10c6" path="res://camera/gimbal_outer.tscn" id="6_wy36c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,8 +29,7 @@ height = 0.25
 radius = 0.08
 
 [node name="Hole" type="Node3D"]
-script = ExtResource("1_gw1st")
-next_hole = ExtResource("2_xclkm")
+script = ExtResource("1_o3xkm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r3djb")
@@ -42,12 +40,13 @@ shadow_enabled = true
 directional_shadow_max_distance = 40.0
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_yc1nr")
+mesh_library = ExtResource("2_4741r")
 physics_material = SubResource("PhysicsMaterial_tgqet")
 cell_size = Vector3(1, 0.001, 1)
 data = {
-"cells": PackedInt32Array(65534, 3, 22, 65534, 2, 24, 65534, 1, 30, 65534, 0, 24, 65534, 65535, 24, 65534, 65534, 24, 65534, 65533, 30, 65534, 65532, 15, 65532, 65532, 1441801, 65534, 65530, 655369, 1, 65532, 1048577, 65535, 65532, 1048600, 0, 65532, 1048600, 65534, 65531, 24, 65533, 65532, 1441816)
+"cells": PackedInt32Array(65534, 3, 22, 1, 65532, 1048577, 65534, 2, 24, 65534, 1, 25, 65534, 0, 0, 0, 0, 655360, 65535, 0, 1048600, 0, 65535, 24, 0, 65534, 31, 0, 65533, 24, 0, 65532, 0)
 }
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Hole" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49968, 0, -3.4995)
@@ -56,15 +55,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49968, 0, -3.4995)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0802187, 0)
 shape = SubResource("CylinderShape3D_jj4hf")
 
-[node name="Arrow" parent="." instance=ExtResource("4_g1v61")]
+[node name="Arrow" parent="." instance=ExtResource("3_yp5q4")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.51547, 1.05729, 3.73465)
 
-[node name="Ball" parent="." instance=ExtResource("3_8r3te")]
+[node name="Ball" parent="." instance=ExtResource("4_2m2td")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 1.05729, 3.73465)
 
 [node name="Tee" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 0.157288, 3.73465)
 
-[node name="UI" parent="." instance=ExtResource("5_ga7a5")]
+[node name="UI" parent="." instance=ExtResource("5_ors74")]
 
-[node name="GimbalOuter" parent="." instance=ExtResource("6_yyqi2")]
+[node name="GimbalOuter" parent="." instance=ExtResource("6_wy36c")]
