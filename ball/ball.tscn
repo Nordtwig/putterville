@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgjx1eoax5jym"]
+[gd_scene load_steps=7 format=3 uid="uid://bgjx1eoax5jym"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_1jrht"]
+[ext_resource type="Texture2D" uid="uid://cfu7dm4odqrgs" path="res://assets/ball_normal_map.png" id="2_i5hng"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uovel"]
 bounce = 0.25
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d43j4"]
+normal_enabled = true
+normal_scale = -0.75
+normal_texture = ExtResource("2_i5hng")
+
 [sub_resource type="SphereMesh" id="SphereMesh_fhycy"]
+material = SubResource("StandardMaterial3D_d43j4")
 radius = 0.05
 height = 0.1
 
