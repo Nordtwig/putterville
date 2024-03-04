@@ -6,6 +6,16 @@ extends Node3D
 var zoom = 0.2
 
 
+func _process(delta) -> void:
+    zoom = clamp(zoom, 0.1, 2.0)
+    scale = Vector3.ONE * zoom
+    var y = Input.get_axis("cam_left", "cam_right")
+    rotate_y(y * cam_speed * delta)
+    var x = Input.get_axis("cam_up", "cam_down")
+    $GimbalInner.rotate_x(x * cam_speed * delta)
+    $GimbalInner.rotation.x = clamp($GimbalInner.rotation.x, -PI / 2, -0.2)
+
+
 func _input(event):
     if event.is_action_pressed("cam_zoom_in"):
         zoom -= zoom_speed

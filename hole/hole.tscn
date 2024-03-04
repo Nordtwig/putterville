@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgjx1eoax5jym" path="res://ball/ball.tscn" id="3_8r3te"]
 [ext_resource type="PackedScene" uid="uid://1ab0v008gx5h" path="res://arrow/arrow.tscn" id="4_g1v61"]
 [ext_resource type="PackedScene" uid="uid://bp44uvbmbvdjg" path="res://ui/ui.tscn" id="5_ga7a5"]
-[ext_resource type="Script" path="res://hole/CameraGimbal.gd" id="6_vmg4n"]
+[ext_resource type="PackedScene" uid="uid://ux4th72y10c6" path="res://camera/gimbal_outer.tscn" id="6_yyqi2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6o0ss"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -65,10 +65,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51547, 0.157288, 3.73465)
 
 [node name="UI" parent="." instance=ExtResource("5_ga7a5")]
 
-[node name="GimbalOuter" type="Node3D" parent="."]
-script = ExtResource("6_vmg4n")
-
-[node name="GimbalInner" type="Node3D" parent="GimbalOuter"]
-
-[node name="Camera3D" type="Camera3D" parent="GimbalOuter/GimbalInner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+[node name="GimbalOuter" parent="." instance=ExtResource("6_yyqi2")]

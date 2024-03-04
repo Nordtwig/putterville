@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ux4th72y10c6"]
+
+[ext_resource type="Script" path="res://hole/CameraGimbal.gd" id="1_pf8me"]
+
+[node name="GimbalOuter" type="Node3D"]
+script = ExtResource("1_pf8me")
+
+[node name="GimbalInner" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="GimbalInner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)

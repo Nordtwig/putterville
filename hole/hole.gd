@@ -35,6 +35,8 @@ func _process(delta) -> void:
             animate_power(delta)
         SHOOT:
             pass
+    if state != WIN:
+        $GimbalOuter.position = $Ball.position
    
 
 func _input(event):
